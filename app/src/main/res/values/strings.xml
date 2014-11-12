@@ -4,5 +4,7 @@
     <string name="app_name">Sravnilka</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="moved">\'%1$s\' moved to position %2$s</string>
+    <string name="drag_drop">Touch the grip or long press an item to drag.</string>
 
-</resources>
+    </resources>
