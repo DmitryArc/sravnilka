@@ -9,9 +9,6 @@
     tools:context=".RootActivity$PlaceholderFragment">
 
 
-    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
-        android:id="@+id/dynamiclistview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
 </RelativeLayout>
