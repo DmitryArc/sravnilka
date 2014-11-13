@@ -2,7 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+    </style>
+
+    <style name="AppTheme.ActionBar" parent="android:Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/light_blue</item>
+        <item name="android:titleTextStyle">@style/SrActionBarTitleText</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <!--<item name="android:homeAsUpIndicator">@android:drawable/ic_ab_back_holo_light</item-->
+    </style>
+
+    <style name="SrActionBarTitleText"
+        parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

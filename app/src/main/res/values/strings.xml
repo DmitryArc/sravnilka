@@ -7,4 +7,9 @@
     <string name="moved">\'%1$s\' moved to position %2$s</string>
     <string name="drag_drop">Touch the grip or long press an item to drag.</string>
 
+    <string name="title_f_items">Что сравниваем</string>
+    <string name="title_f_params">Параметры сравнения</string>
+    <string name="title_f_compare">Сравните</string>
+    <string name="title_f_sort">Важность параметров</string>
+    <string name="title_f_result">Результат</string>
     </resources>
