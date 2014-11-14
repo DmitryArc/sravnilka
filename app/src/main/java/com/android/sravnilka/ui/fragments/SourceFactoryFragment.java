@@ -11,8 +11,10 @@ import android.widget.LinearLayout;
 import com.android.sravnilka.R;
 import com.android.sravnilka.ui.widgets.ClosebleEditField;
 import com.android.sravnilka.ui.widgets.IInputStorage;
+import com.android.sravnilka.utils.StackRandomAccess;
 
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Created by dka on 12.11.2014.
@@ -21,10 +23,20 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     protected Set<String> mData;
     protected Button vNextButton;
     protected LinearLayout vFieldStorage;
+    protected Stack<ClosebleEditField> mFieldStack;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(savedInstanceState == null){
+            mFieldStack = new Stack<ClosebleEditField>();
+        }
+    }
 
     /**************************************************************
      * Fragment callbacks
      **************************************************************/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,9 +75,25 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
      * IInputStorage implementation
      **************************************************************/
     @Override
+    public void onItemCreated(ClosebleEditField field) {
+        mFieldStack.push(field);
+    }
+
+    @Override
+    public void onStartTyping(ClosebleEditField field) {
+        if(mFieldStack.peek() != null && mFieldStack.peek().equals(field)){
+            next(null);
+        }
+    }
+
+    @Override
     public void onCloseButtonClicked(ClosebleEditField field) {
         if(vFieldStorage != null){
             vFieldStorage.removeView(field);
+            mFieldStack.remove(field);
         }
+        // TODO disable close button at last element (when it is the one in collection)
     }
+
+
 }

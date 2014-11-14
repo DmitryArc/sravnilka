@@ -19,6 +19,7 @@ public class ClosebleEditField extends RelativeLayout {
     public ClosebleEditField(Context context, IInputStorage listener){
         this(context);
         mRootListener = listener;
+        mRootListener.onItemCreated(this);
     }
 
     public ClosebleEditField(Context context) {
@@ -44,7 +45,7 @@ public class ClosebleEditField extends RelativeLayout {
     private void init(Context context){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
-        this.addView(inflater.inflate(R.layout.view_input_field, null));
+        this.addView(inflater.inflate(R.layout.v_input_field, null));
 
         vBtnClose = (ImageButton) findViewById(R.id.btn_input_close);
         vBtnClose.setOnClickListener(new OnClickListener() {
