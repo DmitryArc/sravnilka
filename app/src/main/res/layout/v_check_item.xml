@@ -7,14 +7,6 @@
         android:id="@+id/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"/>
-    <TextView
-        android:id="@+id/check_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginLeft="5dp"
-        android:singleLine="true"
-        android:text="124"/>
-
+        android:checked="false"
+        />
 </LinearLayout>

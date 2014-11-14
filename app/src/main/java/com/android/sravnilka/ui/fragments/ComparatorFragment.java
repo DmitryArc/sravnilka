@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.sravnilka.R;
+import com.android.sravnilka.dao.Camparator;
+import com.android.sravnilka.dao.ComparatorItem;
 import com.android.sravnilka.ui.adapter.ComparatorAdapter;
 
 import java.util.ArrayList;
@@ -22,8 +24,7 @@ public class ComparatorFragment extends Fragment {
     private ComparatorAdapter mAdapter;
 
     //Test Data
-    private ArrayList<String> mNames;
-    private ArrayList<String> mChecks;
+    private ArrayList<Camparator> mNames;
 
     @Override
     public void onAttach(Activity activity) {
@@ -47,23 +48,47 @@ public class ComparatorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mListComparatorView = (ListView) view.findViewById(R.id.comparator_list);
         initList();
-        mAdapter = new ComparatorAdapter(getActivity(), mNames, mChecks);
+        mAdapter = new ComparatorAdapter(getActivity(), mNames);
         mListComparatorView.setAdapter(mAdapter);
     }
 
     private void initList(){
-        mNames = new ArrayList<String>();
-        mNames.add("One");
-        mNames.add("Two");
-        mNames.add("Three");
-        mNames.add("Four");
-        mNames.add("Five");
-        mNames.add("Six");
-        mNames.add("Seven");
-        mChecks = new ArrayList<String>();
-        mChecks.add("Abube 1");
-        mChecks.add("Abube 2");
-        mChecks.add("Abube 3");
-        mChecks.add("Abube 4");
+        mNames = new ArrayList<Camparator>();
+        ArrayList<ComparatorItem> checks = new ArrayList<ComparatorItem>();
+        checks.add(new ComparatorItem("Abube 1", false));
+        checks.add(new ComparatorItem("Abube 2",false));
+        checks.add(new ComparatorItem("Abube 3",false));
+        checks.add(new ComparatorItem("Abube 4",false));
+        ArrayList<ComparatorItem> checks1 = new ArrayList<ComparatorItem>();
+        checks1.add(new ComparatorItem("Abube 1", false));
+        checks1.add(new ComparatorItem("Abube 2",false));
+        checks1.add(new ComparatorItem("Abube 3",false));
+        checks1.add(new ComparatorItem("Abube 4",false));
+        ArrayList<ComparatorItem> checks2 = new ArrayList<ComparatorItem>();
+        checks2.add(new ComparatorItem("Abube 1", false));
+        checks2.add(new ComparatorItem("Abube 2",false));
+        checks2.add(new ComparatorItem("Abube 3",false));
+        checks2.add(new ComparatorItem("Abube 4",false));
+        ArrayList<ComparatorItem> checks3 = new ArrayList<ComparatorItem>();
+        checks3.add(new ComparatorItem("Abube 1", false));
+        checks3.add(new ComparatorItem("Abube 2",false));
+        checks3.add(new ComparatorItem("Abube 3",false));
+        checks3.add(new ComparatorItem("Abube 4",false));
+        ArrayList<ComparatorItem> checks4 = new ArrayList<ComparatorItem>();
+        checks4.add(new ComparatorItem("Abube 1", false));
+        checks4.add(new ComparatorItem("Abube 2",false));
+        checks4.add(new ComparatorItem("Abube 3",false));
+        checks4.add(new ComparatorItem("Abube 4",false));
+        ArrayList<ComparatorItem> checks5 = new ArrayList<ComparatorItem>();
+        checks5.add(new ComparatorItem("Abube 1", false));
+        checks5.add(new ComparatorItem("Abube 2",false));
+        checks5.add(new ComparatorItem("Abube 3",false));
+        checks5.add(new ComparatorItem("Abube 4",false));
+        mNames.add(new Camparator("One",checks));
+        mNames.add(new Camparator("Two", checks1));
+        mNames.add(new Camparator("Three", checks2));
+        mNames.add(new Camparator("Four", checks3));
+        mNames.add(new Camparator("Five", checks4));
+        mNames.add(new Camparator("Six", checks5));
     }
 }
