@@ -33,7 +33,7 @@ public class DragDropAdapter extends ArrayAdapter<String> {
     public View getView(final int position, final View convertView, final ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.drag_drop_item, parent, false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.v_drag_drop_item, parent, false);
         }
         ((TextView) view.findViewById(R.id.draganddrop_textview)).setText(getItem(position));
         return view;

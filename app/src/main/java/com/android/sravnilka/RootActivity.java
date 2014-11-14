@@ -114,33 +114,4 @@ public class RootActivity extends Activity implements IFlowController {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fr_root, container, false);
-
-            //Example Drag and Drop ListView
-            Toast.makeText(getActivity(), R.string.drag_drop,Toast.LENGTH_LONG).show();
-            DynamicListView listView = (DynamicListView) rootView.findViewById(R.id.dynamiclistview);
-            ArrayAdapter<String> adapter = new DragDropAdapter(getActivity());
-            listView.enableDragAndDrop();
-            listView.setDraggableManager(new TouchViewDraggableManager(R.id.draganddrop_touchview));
-            listView.setOnItemMovedListener(new DragDropItemMovedListener(adapter, getActivity()));
-            listView.setOnItemLongClickListener(new DragDropLongClickListener(listView));
-            listView.setAdapter(adapter);
-            return rootView;
-        }
-    }
-
-
-
 }
