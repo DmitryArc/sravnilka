@@ -39,17 +39,17 @@ public class RootActivity extends Activity implements IFlowController {
         setContentView(R.layout.ac_root);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        if(savedInstanceState == null){
-//            getFragmentManager().beginTransaction()
-//                    .add(R.id.container, new ItemsFactoryFragment())
-//                    .commit();
-//        }
-
-        if (savedInstanceState == null) {
+        if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new ItemsFactoryFragment())
                     .commit();
         }
+
+//        if (savedInstanceState == null) {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PlaceholderFragment())
+//                    .commit();
+//        }
     }
 
     /**************************************************************

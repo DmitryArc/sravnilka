@@ -3,6 +3,7 @@ package com.android.sravnilka.ui.fragments;
 import android.app.Activity;
 
 import com.android.sravnilka.IFlowController;
+import com.android.sravnilka.ui.widgets.ClosebleEditField;
 
 import java.util.Set;
 
@@ -20,7 +21,10 @@ public class ParamsFactoryFragment extends SourceFactoryFragment {
     @Override
     protected void next(Set<String> items) {
         if(getActivity() instanceof IFlowController){
-            ((IFlowController)getActivity()).onParamSetReady(mData);
+            // TODO uncomment
+//            ((IFlowController)getActivity()).onParamSetReady(mData);
+            // TODO remove next code
+            vFieldStorage.addView(new ClosebleEditField(getActivity(), this));
         }
     }
 }

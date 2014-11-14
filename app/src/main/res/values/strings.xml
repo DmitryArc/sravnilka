@@ -12,4 +12,6 @@
     <string name="title_f_compare">Сравните</string>
     <string name="title_f_sort">Важность параметров</string>
     <string name="title_f_result">Результат</string>
+
+    <string name="hint_input">type here</string>
     </resources>
