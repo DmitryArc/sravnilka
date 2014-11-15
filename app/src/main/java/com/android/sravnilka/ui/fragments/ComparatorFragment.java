@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.sravnilka.R;
-import com.android.sravnilka.dao.Camparator;
+import com.android.sravnilka.dao.CheckItem;
 import com.android.sravnilka.dao.ComparatorItem;
 import com.android.sravnilka.ui.adapter.ComparatorAdapter;
 
@@ -24,7 +24,7 @@ public class ComparatorFragment extends Fragment {
     private ComparatorAdapter mAdapter;
 
     //Test Data
-    private ArrayList<Camparator> mNames;
+    private ArrayList<ComparatorItem> mNames;
 
     @Override
     public void onAttach(Activity activity) {
@@ -53,42 +53,42 @@ public class ComparatorFragment extends Fragment {
     }
 
     private void initList(){
-        mNames = new ArrayList<Camparator>();
-        ArrayList<ComparatorItem> checks = new ArrayList<ComparatorItem>();
-        checks.add(new ComparatorItem("Abube 1", false));
-        checks.add(new ComparatorItem("Abube 2",false));
-        checks.add(new ComparatorItem("Abube 3",false));
-        checks.add(new ComparatorItem("Abube 4",false));
-        ArrayList<ComparatorItem> checks1 = new ArrayList<ComparatorItem>();
-        checks1.add(new ComparatorItem("Abube 1", false));
-        checks1.add(new ComparatorItem("Abube 2",false));
-        checks1.add(new ComparatorItem("Abube 3",false));
-        checks1.add(new ComparatorItem("Abube 4",false));
-        ArrayList<ComparatorItem> checks2 = new ArrayList<ComparatorItem>();
-        checks2.add(new ComparatorItem("Abube 1", false));
-        checks2.add(new ComparatorItem("Abube 2",false));
-        checks2.add(new ComparatorItem("Abube 3",false));
-        checks2.add(new ComparatorItem("Abube 4",false));
-        ArrayList<ComparatorItem> checks3 = new ArrayList<ComparatorItem>();
-        checks3.add(new ComparatorItem("Abube 1", false));
-        checks3.add(new ComparatorItem("Abube 2",false));
-        checks3.add(new ComparatorItem("Abube 3",false));
-        checks3.add(new ComparatorItem("Abube 4",false));
-        ArrayList<ComparatorItem> checks4 = new ArrayList<ComparatorItem>();
-        checks4.add(new ComparatorItem("Abube 1", false));
-        checks4.add(new ComparatorItem("Abube 2",false));
-        checks4.add(new ComparatorItem("Abube 3",false));
-        checks4.add(new ComparatorItem("Abube 4",false));
-        ArrayList<ComparatorItem> checks5 = new ArrayList<ComparatorItem>();
-        checks5.add(new ComparatorItem("Abube 1", false));
-        checks5.add(new ComparatorItem("Abube 2",false));
-        checks5.add(new ComparatorItem("Abube 3",false));
-        checks5.add(new ComparatorItem("Abube 4",false));
-        mNames.add(new Camparator("One",checks));
-        mNames.add(new Camparator("Two", checks1));
-        mNames.add(new Camparator("Three", checks2));
-        mNames.add(new Camparator("Four", checks3));
-        mNames.add(new Camparator("Five", checks4));
-        mNames.add(new Camparator("Six", checks5));
+        mNames = new ArrayList<ComparatorItem>();
+        ArrayList<CheckItem> checks = new ArrayList<CheckItem>();
+        checks.add(new CheckItem("Abube 1", false));
+        checks.add(new CheckItem("Abube 2",false));
+        checks.add(new CheckItem("Abube 3",false));
+        checks.add(new CheckItem("Abube 4",false));
+        ArrayList<CheckItem> checks1 = new ArrayList<CheckItem>();
+        checks1.add(new CheckItem("Abube 1", false));
+        checks1.add(new CheckItem("Abube 2",false));
+        checks1.add(new CheckItem("Abube 3",false));
+        checks1.add(new CheckItem("Abube 4",false));
+        ArrayList<CheckItem> checks2 = new ArrayList<CheckItem>();
+        checks2.add(new CheckItem("Abube 1", false));
+        checks2.add(new CheckItem("Abube 2",false));
+        checks2.add(new CheckItem("Abube 3",false));
+        checks2.add(new CheckItem("Abube 4",false));
+        ArrayList<CheckItem> checks3 = new ArrayList<CheckItem>();
+        checks3.add(new CheckItem("Abube 1", false));
+        checks3.add(new CheckItem("Abube 2",false));
+        checks3.add(new CheckItem("Abube 3",false));
+        checks3.add(new CheckItem("Abube 4",false));
+        ArrayList<CheckItem> checks4 = new ArrayList<CheckItem>();
+        checks4.add(new CheckItem("Abube 1", false));
+        checks4.add(new CheckItem("Abube 2",false));
+        checks4.add(new CheckItem("Abube 3",false));
+        checks4.add(new CheckItem("Abube 4",false));
+        ArrayList<CheckItem> checks5 = new ArrayList<CheckItem>();
+        checks5.add(new CheckItem("Abube 1", false));
+        checks5.add(new CheckItem("Abube 2",false));
+        checks5.add(new CheckItem("Abube 3",false));
+        checks5.add(new CheckItem("Abube 4",false));
+        mNames.add(new ComparatorItem("One",checks));
+        mNames.add(new ComparatorItem("Two", checks1));
+        mNames.add(new ComparatorItem("Three", checks2));
+        mNames.add(new ComparatorItem("Four", checks3));
+        mNames.add(new ComparatorItem("Five", checks4));
+        mNames.add(new ComparatorItem("Six", checks5));
     }
 }

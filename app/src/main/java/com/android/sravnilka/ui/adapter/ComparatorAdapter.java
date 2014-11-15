@@ -1,6 +1,7 @@
 package com.android.sravnilka.ui.adapter;
 
 import android.content.Context;
+import android.support.v7.internal.widget.TintCheckBox;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.sravnilka.R;
-import com.android.sravnilka.dao.Camparator;
+import com.android.sravnilka.dao.CheckItem;
 import com.android.sravnilka.dao.ComparatorItem;
 
 import java.util.ArrayList;
@@ -19,12 +20,12 @@ import java.util.ArrayList;
  * Created by Дмитрий on 13.11.2014.
  */
 public class ComparatorAdapter extends BaseAdapter{
-    private ArrayList<Camparator> mNameData;
+    private ArrayList<ComparatorItem> mNameData;
     private Context mContext;
     private LayoutInflater inflater;
 
 
-    public ComparatorAdapter(Context context,ArrayList<Camparator> nameData){
+    public ComparatorAdapter(Context context,ArrayList<ComparatorItem> nameData){
        this.mContext = context;
        this.mNameData = nameData;
        inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -73,7 +74,7 @@ public class ComparatorAdapter extends BaseAdapter{
                 @Override
                 public void onClick(View view) {
                     CheckBox cb = (CheckBox) view;
-                    ComparatorItem item = (ComparatorItem) cb.getTag();
+                    CheckItem item = (CheckItem) cb.getTag();
                     item.setChecked(cb.isChecked());
                 }
             });

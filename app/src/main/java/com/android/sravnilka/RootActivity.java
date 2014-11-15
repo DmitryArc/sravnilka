@@ -41,7 +41,7 @@ public class RootActivity extends Activity implements IFlowController {
 
         if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new ItemsFactoryFragment())
+                    .add(R.id.container, new ComparatorFragment())
                     .commit();
         }
 
