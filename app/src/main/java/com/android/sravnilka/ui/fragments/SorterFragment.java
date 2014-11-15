@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.sravnilka.R;
@@ -18,10 +20,11 @@ import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDragga
 /**
  * Created by dka on 12.11.2014.
  */
-public class SorterFragment extends Fragment {
+public class SorterFragment extends Fragment implements View.OnClickListener{
 
     private DynamicListView mListView;
     private ArrayAdapter<String> mAdapter;
+    private Button mNextButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,17 @@ public class SorterFragment extends Fragment {
         mListView.enableDragAndDrop();
         mListView.setDraggableManager(new TouchViewDraggableManager(R.id.draganddrop_touchview));
         mListView.setOnItemMovedListener(new DragDropItemMovedListener(mAdapter, getActivity()));
-        mListView.setOnItemLongClickListener(new DragDropLongClickListener(mListView));
+//        mListView.setOnItemLongClickListener(new DragDropLongClickListener(mListView));
         mListView.setAdapter(mAdapter);
+        FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
+        mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
+        mNextButton.setText("Result");
+        mListView.addFooterView(footerLayout);
+        mNextButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

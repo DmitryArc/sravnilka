@@ -6,22 +6,31 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
 import com.android.sravnilka.dao.CheckItem;
 import com.android.sravnilka.dao.ComparatorItem;
 import com.android.sravnilka.ui.adapter.ComparatorAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by dka on 12.11.2014.
  */
-public class ComparatorFragment extends Fragment {
+public class ComparatorFragment extends Fragment implements View.OnClickListener{
 
+    private final static String DATA = "data";
+    private final static String CHECKS = "checks";
     private ListView mListComparatorView;
     private ComparatorAdapter mAdapter;
+    private Button mNextButton;
 
     //Test Data
     private ArrayList<ComparatorItem> mNames;
@@ -37,6 +46,15 @@ public class ComparatorFragment extends Fragment {
         Bundle args = getArguments();
     }
 
+    public static ComparatorFragment newInstance(Set<String> data, Set<String> checks){
+        ComparatorFragment fragment = new ComparatorFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(DATA, (Serializable) data);
+        args.putSerializable(CHECKS, (Serializable) checks);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fr_comparator, container, false);
@@ -50,7 +68,13 @@ public class ComparatorFragment extends Fragment {
         initList();
         mAdapter = new ComparatorAdapter(getActivity(), mNames);
         mListComparatorView.setAdapter(mAdapter);
+        FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
+        mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
+        mNextButton.setText("Next");
+        mListComparatorView.addFooterView(footerLayout);
+        mNextButton.setOnClickListener(this);
     }
+
 
     private void initList(){
         mNames = new ArrayList<ComparatorItem>();
@@ -90,5 +114,29 @@ public class ComparatorFragment extends Fragment {
         mNames.add(new ComparatorItem("Four", checks3));
         mNames.add(new ComparatorItem("Five", checks4));
         mNames.add(new ComparatorItem("Six", checks5));
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_next:
+                if(validateData()){
+                    next(null);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private boolean validateData() {
+        return true;
+    }
+
+    private void next(Set<String> items) {
+        if(getActivity() instanceof IFlowController){
+            Map<String, Set<String>> abube = null;
+            ((IFlowController)getActivity()).onCompareActionDone(abube);
+        }
     }
 }
