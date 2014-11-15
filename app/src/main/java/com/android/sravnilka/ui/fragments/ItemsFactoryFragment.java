@@ -17,6 +17,11 @@ import java.util.Set;
  */
 public class ItemsFactoryFragment extends SourceFactoryFragment {
 
+    public ItemsFactoryFragment(){
+        super();
+        mHintId = R.string.hint_input_item;
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

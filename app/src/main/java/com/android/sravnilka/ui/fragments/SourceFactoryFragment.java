@@ -20,6 +20,7 @@ import java.util.Stack;
  * Created by dka on 12.11.2014.
  */
 public abstract class SourceFactoryFragment extends Fragment implements IInputStorage {
+    protected int mHintId;
     protected Set<String> mData;
     protected Button vNextButton;
     protected LinearLayout vFieldStorage;
@@ -40,8 +41,7 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the fr_sorter for this fragment
-        return inflater.inflate(R.layout.fr_test, container, false);
+        return inflater.inflate(R.layout.fr_input, container, false);
     }
 
     @Override
@@ -51,6 +51,9 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
         vNextButton = (Button) view.findViewById(R.id.btn_next);
         vNextButton.setOnClickListener(mNextButtonListener);
         vFieldStorage = (LinearLayout) view.findViewById(R.id.lt_input_storage);
+        if(vFieldStorage.getChildCount() == 0){
+            addInputField();
+        }
     }
 
     /**************************************************************
@@ -82,7 +85,7 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     @Override
     public void onStartTyping(ClosebleEditField field) {
         if(mFieldStack.peek() != null && mFieldStack.peek().equals(field)){
-            next(null);
+            addInputField();
         }
     }
 
@@ -95,5 +98,8 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
         // TODO disable close button at last element (when it is the one in collection)
     }
 
+    protected void addInputField(){
+        vFieldStorage.addView(new ClosebleEditField(getActivity(), this, mHintId));
+    }
 
 }

@@ -9,13 +9,14 @@
         android:layout_height="@dimen/input_field_height"
         android:singleLine="true"
         android:paddingRight="@dimen/input_field_right_padding"
-        android:hint="@string/hint_input" />
+        android:paddingLeft="@dimen/input_field_left_padding"/>
 
     <ImageButton android:id="@+id/btn_input_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_alignRight="@+id/et_input_edit"
-        android:background="@drawable/ic_launcher"/>
+        android:background="@drawable/ic_launcher"
+        android:visibility="gone"/>
 
 </RelativeLayout>

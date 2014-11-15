@@ -13,5 +13,6 @@
     <string name="title_f_sort">Важность параметров</string>
     <string name="title_f_result">Результат</string>
 
-    <string name="hint_input">type here</string>
+    <string name="hint_input_item">Введите что сравнить</string>
+    <string name="hint_input_param">Введите параметр для сравнения</string>
     </resources>

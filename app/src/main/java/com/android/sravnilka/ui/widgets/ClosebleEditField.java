@@ -1,9 +1,12 @@
 package com.android.sravnilka.ui.widgets;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -13,13 +16,17 @@ import com.android.sravnilka.R;
  * Created by Dmitry.Kalyuzhnyi on 11/14/2014.
  */
 public class ClosebleEditField extends RelativeLayout {
+    private int mHintId;
+    private EditText vEditText;
     private ImageButton vBtnClose;
     private IInputStorage mRootListener;
 
-    public ClosebleEditField(Context context, IInputStorage listener){
-        this(context);
+    public ClosebleEditField(Context context, IInputStorage listener, int hintId){
+        super(context);
         mRootListener = listener;
         mRootListener.onItemCreated(this);
+        mHintId = hintId;
+        init(context);
     }
 
     public ClosebleEditField(Context context) {
@@ -42,10 +49,32 @@ public class ClosebleEditField extends RelativeLayout {
         init(context);
     }
 
+//    private void setCloseButtonEnabled(boolean state){
+//        int visibility = state ? View.VISIBLE : View.GONE;
+//        vBtnClose.setVisibility(visibility);
+//    }
+
     private void init(Context context){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         this.addView(inflater.inflate(R.layout.v_input_field, null));
+
+        vEditText = (EditText) findViewById(R.id.et_input_edit);
+        vEditText.setHint(mHintId);
+        vEditText.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+                if(mRootListener != null && s.length() > 0){
+                    mRootListener.onStartTyping(ClosebleEditField.this);
+                    vBtnClose.setVisibility(View.VISIBLE);
+                }
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+                // NOP
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+                // NOP
+            }
+        });
 
         vBtnClose = (ImageButton) findViewById(R.id.btn_input_close);
         vBtnClose.setOnClickListener(new OnClickListener() {

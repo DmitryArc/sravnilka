@@ -73,9 +73,9 @@ public class RootActivity extends Activity implements IFlowController {
                 return true;
             case android.R.id.home:
                 FragmentManager fm = getFragmentManager();
-                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+//                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
                     fm.popBackStack();
-                }
+//                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
