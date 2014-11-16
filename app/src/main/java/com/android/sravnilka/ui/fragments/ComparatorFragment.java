@@ -18,8 +18,10 @@ import com.android.sravnilka.ui.adapter.ComparatorAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by dka on 12.11.2014.
@@ -31,9 +33,9 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
     private ListView mListComparatorView;
     private ComparatorAdapter mAdapter;
     private Button mNextButton;
-
-    //Test Data
-    private ArrayList<ComparatorItem> mNames;
+    private Set<String> mItemsSet;
+    private Set<String> mParamsSet;
+    private ArrayList<ComparatorItem> mDataFinish;
 
     @Override
     public void onAttach(Activity activity) {
@@ -44,6 +46,10 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
+        if(args != null){
+            mItemsSet = (Set<String>)args.getSerializable(DATA);
+            mParamsSet = (Set<String>) args.getSerializable(CHECKS);
+        }
     }
 
     public static ComparatorFragment newInstance(Set<String> data, Set<String> checks){
@@ -66,7 +72,7 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         super.onViewCreated(view, savedInstanceState);
         mListComparatorView = (ListView) view.findViewById(R.id.comparator_list);
         initList();
-        mAdapter = new ComparatorAdapter(getActivity(), mNames);
+        mAdapter = new ComparatorAdapter(getActivity(), mDataFinish);
         mListComparatorView.setAdapter(mAdapter);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
         mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
@@ -84,43 +90,16 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
     }
 
     private void initList(){
-        mNames = new ArrayList<ComparatorItem>();
-        ArrayList<CheckItem> checks = new ArrayList<CheckItem>();
-        checks.add(new CheckItem("Abube 1", false));
-        checks.add(new CheckItem("Abube 2",false));
-        checks.add(new CheckItem("Abube 3",false));
-        checks.add(new CheckItem("Abube 4",false));
-        ArrayList<CheckItem> checks1 = new ArrayList<CheckItem>();
-        checks1.add(new CheckItem("Abube 1", false));
-        checks1.add(new CheckItem("Abube 2",false));
-        checks1.add(new CheckItem("Abube 3",false));
-        checks1.add(new CheckItem("Abube 4",false));
-        ArrayList<CheckItem> checks2 = new ArrayList<CheckItem>();
-        checks2.add(new CheckItem("Abube 1", false));
-        checks2.add(new CheckItem("Abube 2",false));
-        checks2.add(new CheckItem("Abube 3",false));
-        checks2.add(new CheckItem("Abube 4",false));
-        ArrayList<CheckItem> checks3 = new ArrayList<CheckItem>();
-        checks3.add(new CheckItem("Abube 1", false));
-        checks3.add(new CheckItem("Abube 2",false));
-        checks3.add(new CheckItem("Abube 3",false));
-        checks3.add(new CheckItem("Abube 4",false));
-        ArrayList<CheckItem> checks4 = new ArrayList<CheckItem>();
-        checks4.add(new CheckItem("Abube 1", false));
-        checks4.add(new CheckItem("Abube 2",false));
-        checks4.add(new CheckItem("Abube 3",false));
-        checks4.add(new CheckItem("Abube 4",false));
-        ArrayList<CheckItem> checks5 = new ArrayList<CheckItem>();
-        checks5.add(new CheckItem("Abube 1", false));
-        checks5.add(new CheckItem("Abube 2",false));
-        checks5.add(new CheckItem("Abube 3",false));
-        checks5.add(new CheckItem("Abube 4",false));
-        mNames.add(new ComparatorItem("One",checks));
-        mNames.add(new ComparatorItem("Two", checks1));
-        mNames.add(new ComparatorItem("Three", checks2));
-        mNames.add(new ComparatorItem("Four", checks3));
-        mNames.add(new ComparatorItem("Five", checks4));
-        mNames.add(new ComparatorItem("Six", checks5));
+        if(mDataFinish == null) {
+            mDataFinish = new ArrayList<ComparatorItem>();
+            for (String item : mItemsSet) {
+                ArrayList<CheckItem> checks = new ArrayList<CheckItem>();
+                for (String check : mParamsSet) {
+                    checks.add(new CheckItem(check, false));
+                }
+                mDataFinish.add(new ComparatorItem(item, checks));
+            }
+        }
     }
 
     @Override
@@ -128,7 +107,7 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.btn_next:
                 if(validateData()){
-                    next(null);
+                    next();
                 }
                 break;
             default:
@@ -140,10 +119,23 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         return true;
     }
 
-    private void next(Set<String> items) {
+    private void next() {
         if(getActivity() instanceof IFlowController){
-            Map<String, Set<String>> abube = null;
-            ((IFlowController)getActivity()).onCompareActionDone(abube);
+            ((IFlowController)getActivity()).onCompareActionDone(getData());
         }
+    }
+
+    private Map<String, Set<String>> getData(){
+        Map<String, Set<String>> data = new HashMap<String, Set<String>>();
+        for(int i = 0; i < mDataFinish.size(); i++){
+            Set<String> check = new TreeSet<String>();
+            for(int j = 0; j < mDataFinish.get(i).getChecks().size(); j++){
+                if(mDataFinish.get(i).getChecks().get(j).isChecked()){
+                    check.add(mDataFinish.get(i).getChecks().get(j).getName());
+                }
+            }
+            data.put(mDataFinish.get(i).getName(), check);
+        }
+        return data;
     }
 }

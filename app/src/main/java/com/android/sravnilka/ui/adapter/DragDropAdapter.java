@@ -9,16 +9,17 @@ import android.widget.TextView;
 import com.android.sravnilka.R;
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
+import java.util.Set;
+
 /**
  * Created by Dzmitry_Balash on 11/12/2014.
  */
 public class DragDropAdapter extends ArrayAdapter<String> {
     private final Context mContext;
-    //Example
-    public DragDropAdapter(final Context context) {
+    public DragDropAdapter(final Context context, Set<String> data) {
         mContext = context;
-        for (int i = 0; i < 20; i++) {
-            add("Row number " + i);
+        for (String item : data) {
+            add(item);
         }
     }
     @Override

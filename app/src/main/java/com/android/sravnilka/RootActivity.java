@@ -47,15 +47,9 @@ public class RootActivity extends Activity implements IFlowController {
 
         if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new ComparatorFragment())
+                    .add(R.id.container, new ItemsFactoryFragment())
                     .commit();
         }
-
-//        if (savedInstanceState == null) {
-//            getFragmentManager().beginTransaction()
-//                    .add(R.id.container, new PlaceholderFragment())
-//                    .commit();
-//        }
     }
 
     /**************************************************************
@@ -100,12 +94,12 @@ public class RootActivity extends Activity implements IFlowController {
     @Override
     public void onParamSetReady(Set<String> params) {
         mParamSet = params;
-        openNewFragment(new ComparatorFragment());
+        openNewFragment(ComparatorFragment.newInstance(mItemSet, mParamSet));
     }
 
     @Override
     public void onCompareActionDone(Map<String, Set<String>> data) {
-        openNewFragment(new SorterFragment());
+        openNewFragment(SorterFragment.newInstance(mParamSet));
     }
 
     @Override
