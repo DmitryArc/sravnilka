@@ -26,7 +26,9 @@
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next"/>
+            android:background="@color/light_blue"
+            android:textColor="@android:color/white"
+            android:text="@string/next"/>
     </LinearLayout>
     </ScrollView>
 

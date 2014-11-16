@@ -71,7 +71,7 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         mListComparatorView.setAdapter(mAdapter);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
         mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
-        mNextButton.setText("Next");
+        mNextButton.setText(R.string.next);
         mListComparatorView.addFooterView(footerLayout);
         mNextButton.setOnClickListener(this);
     }

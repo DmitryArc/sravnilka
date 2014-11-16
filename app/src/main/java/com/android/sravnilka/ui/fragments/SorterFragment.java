@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
+import com.android.sravnilka.dao.CheckItem;
+import com.android.sravnilka.dao.ComparatorItem;
 import com.android.sravnilka.ui.adapter.DragDropAdapter;
 import com.android.sravnilka.ui.listeners.DragDropItemMovedListener;
 import com.android.sravnilka.ui.listeners.DragDropLongClickListener;
@@ -19,6 +21,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -36,6 +39,7 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
     private ArrayAdapter<String> mAdapter;
     private Button mNextButton;
     private Set<String> mData;
+    private ArrayList<String> mSortetList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +67,9 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        Toast.makeText(getActivity(), R.string.drag_drop, Toast.LENGTH_LONG).show();
+        initList();
         mListView = (DynamicListView) view.findViewById(R.id.dynamiclistview);
-        mAdapter = new DragDropAdapter(getActivity(), mData);
+        mAdapter = new DragDropAdapter(getActivity(), mSortetList);
         mListView.enableDragAndDrop();
         mListView.setDraggableManager(new TouchViewDraggableManager(R.id.draganddrop_touchview));
         mListView.setOnItemMovedListener(new DragDropItemMovedListener(mAdapter, getActivity()));
@@ -73,9 +77,18 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
         mListView.setAdapter(mAdapter);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
         mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
-        mNextButton.setText("Result");
+        mNextButton.setText(R.string.result);
         mListView.addFooterView(footerLayout);
         mNextButton.setOnClickListener(this);
+    }
+
+    private void initList(){
+        if(mSortetList == null) {
+            mSortetList = new ArrayList<String>();
+            for (String item : mData) {
+                mSortetList.add(item);
+            }
+        }
     }
 
     @Override
@@ -111,8 +124,10 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
     }
     private Map<String, Integer> getData(){
         Map<String, Integer> data = new LinkedHashMap<String, Integer>();
+        mSortetList.clear();
         for(int i = 0; i < mAdapter.getCount(); i++){
             data.put(mAdapter.getItem(i), mAdapter.getCount() - i);
+            mSortetList.add(mAdapter.getItem(i));
         }
         return data;
     }

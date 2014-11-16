@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.android.sravnilka.R;
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 public class DragDropAdapter extends ArrayAdapter<String> {
     private final Context mContext;
-    public DragDropAdapter(final Context context, Set<String> data) {
+    public DragDropAdapter(final Context context, ArrayList<String> data) {
         mContext = context;
         for (String item : data) {
             add(item);
