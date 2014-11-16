@@ -27,6 +27,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -40,7 +41,6 @@ public class RootActivity extends Activity implements IFlowController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_root);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mItemSet = new TreeSet<String>();
         mParamSet = new TreeSet<String>();
@@ -69,8 +69,6 @@ public class RootActivity extends Activity implements IFlowController {
         // as you specify a parent activity in AndroidManifest.xml.
 
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
             case android.R.id.home:
                 FragmentManager fm = getFragmentManager();
 //                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
@@ -104,7 +102,13 @@ public class RootActivity extends Activity implements IFlowController {
 
     @Override
     public void onImportanceScaleReady(Map<String, Integer> importanceScale) {
-        openNewFragment(new ResultsFragment());
+        Map<String, Integer> map = new LinkedHashMap<String, Integer>();
+        map.put("s1", 78);
+        map.put("s2", 73);
+        map.put("s3", 50);
+        map.put("s4", 45);
+        map.put("s5", 15);
+        openNewFragment(ResultsFragment.newInstance(map));
     }
 
     /**************************************************************

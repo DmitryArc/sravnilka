@@ -20,6 +20,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDragga
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -62,7 +63,7 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toast.makeText(getActivity(), R.string.drag_drop, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), R.string.drag_drop, Toast.LENGTH_LONG).show();
         mListView = (DynamicListView) view.findViewById(R.id.dynamiclistview);
         mAdapter = new DragDropAdapter(getActivity(), mData);
         mListView.enableDragAndDrop();
@@ -82,6 +83,7 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
         super.onResume();
         if(getActivity() != null){
             getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_sort));
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -108,9 +110,9 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
         }
     }
     private Map<String, Integer> getData(){
-        Map<String, Integer> data = new HashMap<String, Integer>();
+        Map<String, Integer> data = new LinkedHashMap<String, Integer>();
         for(int i = 0; i < mAdapter.getCount(); i++){
-            data.put(mAdapter.getItem(i), i);
+            data.put(mAdapter.getItem(i), mAdapter.getCount() - i);
         }
         return data;
     }

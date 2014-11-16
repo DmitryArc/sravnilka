@@ -38,11 +38,6 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
     private ArrayList<ComparatorItem> mDataFinish;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
@@ -86,6 +81,7 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         super.onResume();
         if(getActivity() != null){
             getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_compare));
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 

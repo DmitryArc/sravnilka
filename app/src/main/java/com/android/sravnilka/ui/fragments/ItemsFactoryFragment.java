@@ -22,6 +22,7 @@ public class ItemsFactoryFragment extends SourceFactoryFragment {
         super.onResume();
         if(getActivity() != null){
             getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_items));
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
         }
     }
 

@@ -22,6 +22,7 @@ public class ParamsFactoryFragment extends SourceFactoryFragment {
         super.onResume();
         if(getActivity() != null){
             getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_params));
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 

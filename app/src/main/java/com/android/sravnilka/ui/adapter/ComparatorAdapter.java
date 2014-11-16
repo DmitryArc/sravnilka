@@ -21,12 +21,10 @@ import java.util.ArrayList;
  */
 public class ComparatorAdapter extends BaseAdapter{
     private ArrayList<ComparatorItem> mNameData;
-    private Context mContext;
     private LayoutInflater inflater;
 
 
     public ComparatorAdapter(Context context,ArrayList<ComparatorItem> nameData){
-       this.mContext = context;
        this.mNameData = nameData;
        inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

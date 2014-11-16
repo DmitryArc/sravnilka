@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="input_field_height">60dp</dimen>
-    <dimen name="input_field_right_padding">45dp</dimen>
+    <dimen name="input_field_right_padding">16dp</dimen>
     <dimen name="input_field_small_padding">7dp</dimen>
 </resources>
