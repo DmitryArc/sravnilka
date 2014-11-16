@@ -102,7 +102,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener{
 
     private void next() {
         if(getActivity() instanceof IFlowController){
-            ((IFlowController)getActivity()).onCompareActionDone(null);
+            ((IFlowController)getActivity()).onReload();
         }
     }
 

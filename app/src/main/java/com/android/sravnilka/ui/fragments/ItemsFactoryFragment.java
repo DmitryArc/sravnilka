@@ -27,10 +27,11 @@ public class ItemsFactoryFragment extends SourceFactoryFragment {
     }
 
     @Override
-    protected void next(Set<String> items) {
+    protected boolean next(Set<String> items) {
         if(getActivity() instanceof IFlowController){
-            ((IFlowController)getActivity()).onItemSetReady(items);
+            return ((IFlowController)getActivity()).onItemSetReady(items);
         }
+        return false;
     }
 
 }

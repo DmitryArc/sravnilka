@@ -18,4 +18,6 @@
     <string name="next">ДАЛЕЕ</string>
     <string name="result">РЕЗУЛЬТАТ</string>
     <string name="reload">СРАВНИТЬ ЗАНОВО</string>
+
+    <string name="check_notification">Вы должны ввести хотя бы одно значение</string>
     </resources>

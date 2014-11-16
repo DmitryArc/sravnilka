@@ -61,7 +61,7 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     /**************************************************************
      * Flow methods
      **************************************************************/
-    protected abstract void next(Set<String> items);
+    protected abstract boolean next(Set<String> items);
 
     protected View.OnClickListener mNextButtonListener = new View.OnClickListener() {
         @Override
@@ -73,9 +73,11 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
                         data.add(field.getData());
                     }
                 }
-                next(data);
-                vFieldStorage.removeAllViews();
-                vFieldStorage = null;
+                if (next(data)){
+                    vFieldStorage.removeAllViews();
+                    vFieldStorage = null;
+                }
+
             }
         }
     };

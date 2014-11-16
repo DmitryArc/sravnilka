@@ -27,10 +27,11 @@ public class ParamsFactoryFragment extends SourceFactoryFragment {
     }
 
     @Override
-    protected void next(Set<String> items) {
+    protected boolean next(Set<String> items) {
         if(getActivity() instanceof IFlowController){
-            ((IFlowController)getActivity()).onParamSetReady(items);
+            return ((IFlowController)getActivity()).onParamSetReady(items);
         }
+        return false;
     }
 
 }

@@ -5,27 +5,15 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-//import com.android.sravnilka.ui.adapter.DragDropAdapter;
-import com.android.sravnilka.ui.adapter.DragDropAdapter;
 import com.android.sravnilka.ui.fragments.ComparatorFragment;
 import com.android.sravnilka.ui.fragments.ItemsFactoryFragment;
-//import com.android.sravnilka.ui.listeners.DragDropItemMovedListener;
-//import com.android.sravnilka.ui.listeners.DragDropLongClickListener;
 import com.android.sravnilka.ui.fragments.ParamsFactoryFragment;
 import com.android.sravnilka.ui.fragments.ResultsFragment;
 import com.android.sravnilka.ui.fragments.SorterFragment;
-import com.android.sravnilka.ui.listeners.DragDropItemMovedListener;
-import com.android.sravnilka.ui.listeners.DragDropLongClickListener;
-import com.nhaarman.listviewanimations.ArrayAdapter;
-import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
-import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
+import com.android.sravnilka.utils.CalculationUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -36,6 +24,8 @@ import java.util.TreeSet;
 public class RootActivity extends Activity implements IFlowController {
     private Set<String> mItemSet;
     private Set<String> mParamSet;
+    private Map<String, Set<String>> mMapping;
+    private Map<String, Integer> mImportanceScale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +34,8 @@ public class RootActivity extends Activity implements IFlowController {
 
         mItemSet = new TreeSet<String>();
         mParamSet = new TreeSet<String>();
+        mMapping = new LinkedHashMap<String, Set<String>>();
+        mImportanceScale = new LinkedHashMap<String, Integer>();
 
         if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
@@ -55,12 +47,6 @@ public class RootActivity extends Activity implements IFlowController {
     /**************************************************************
      * Menu
      **************************************************************/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.root, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -71,9 +57,7 @@ public class RootActivity extends Activity implements IFlowController {
         switch (item.getItemId()) {
             case android.R.id.home:
                 FragmentManager fm = getFragmentManager();
-//                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                    fm.popBackStack();
-//                }
+                fm.popBackStack();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -84,31 +68,50 @@ public class RootActivity extends Activity implements IFlowController {
      * IFlowController implementation
      **************************************************************/
     @Override
-    public void onItemSetReady(Set<String> items) {
-        mItemSet = items;
-        openNewFragment(new ParamsFactoryFragment());
+    public boolean onItemSetReady(Set<String> items) {
+        if(items.isEmpty()){
+            Toast.makeText(this, R.string.check_notification, Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            mItemSet = items;
+            openNewFragment(new ParamsFactoryFragment());
+            return true;
+        }
     }
 
     @Override
-    public void onParamSetReady(Set<String> params) {
-        mParamSet = params;
-        openNewFragment(ComparatorFragment.newInstance(mItemSet, mParamSet));
+    public boolean onParamSetReady(Set<String> params) {
+        if(params.isEmpty()){
+            Toast.makeText(this, R.string.check_notification, Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            mParamSet = params;
+            openNewFragment(ComparatorFragment.newInstance(mItemSet, mParamSet));
+            return true;
+        }
     }
 
     @Override
     public void onCompareActionDone(Map<String, Set<String>> data) {
+        mMapping = data;
         openNewFragment(SorterFragment.newInstance(mParamSet));
     }
 
     @Override
     public void onImportanceScaleReady(Map<String, Integer> importanceScale) {
-        Map<String, Integer> map = new LinkedHashMap<String, Integer>();
-        map.put("s1", 78);
-        map.put("s2", 73);
-        map.put("s3", 50);
-        map.put("s4", 45);
-        map.put("s5", 15);
-        openNewFragment(ResultsFragment.newInstance(map));
+        mImportanceScale = importanceScale;
+        openNewFragment(ResultsFragment.newInstance(CalculationUtils.calculateResult(mItemSet, mMapping, mImportanceScale)));
+    }
+
+    @Override
+    public void onReload() {
+        clearData();
+
+        FragmentManager fm = getFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        fm.beginTransaction().replace(R.id.container, new ItemsFactoryFragment()).commit();
     }
 
     /**************************************************************
@@ -120,4 +123,12 @@ public class RootActivity extends Activity implements IFlowController {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    private void clearData(){
+        mItemSet.clear();
+        mParamSet.clear();
+        mMapping.clear();
+        mImportanceScale.clear();
+    }
+
 }

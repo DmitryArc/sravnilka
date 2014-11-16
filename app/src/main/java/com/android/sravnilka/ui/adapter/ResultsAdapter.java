@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.sravnilka.R;
@@ -48,6 +49,7 @@ public class ResultsAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.name = (TextView) convertView.findViewById(R.id.tv_name);
             viewHolder.value = (TextView)convertView.findViewById(R.id.tv_percent);
+            viewHolder.container = (LinearLayout) convertView.findViewById(R.id.percent_container);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder)convertView.getTag();
@@ -56,8 +58,9 @@ public class ResultsAdapter extends BaseAdapter {
         Map.Entry<String, Integer> item = getItem(position);
 
         viewHolder.name.setText(item.getKey());
+        viewHolder.name.setAlpha((float)item.getValue() / (float)100);
         viewHolder.value.setText(item.getValue()+"");
-
+        viewHolder.container.setAlpha((float)item.getValue() / (float)100);
 
         return convertView;
     }
@@ -65,5 +68,6 @@ public class ResultsAdapter extends BaseAdapter {
     static class ViewHolder {
         protected TextView name;
         protected TextView value;
+        protected LinearLayout container;
     }
 }
