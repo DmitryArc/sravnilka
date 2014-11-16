@@ -29,15 +29,21 @@ import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDragga
 
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 
 public class RootActivity extends Activity implements IFlowController {
+    private Set<String> mItemSet;
+    private Set<String> mParamSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_root);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mItemSet = new TreeSet<String>();
+        mParamSet = new TreeSet<String>();
 
         if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
@@ -87,11 +93,13 @@ public class RootActivity extends Activity implements IFlowController {
      **************************************************************/
     @Override
     public void onItemSetReady(Set<String> items) {
+        mItemSet = items;
         openNewFragment(new ParamsFactoryFragment());
     }
 
     @Override
     public void onParamSetReady(Set<String> params) {
+        mParamSet = params;
         openNewFragment(new ComparatorFragment());
     }
 
@@ -104,6 +112,8 @@ public class RootActivity extends Activity implements IFlowController {
     public void onImportanceScaleReady(Map<String, Integer> importanceScale) {
         openNewFragment(new ResultsFragment());
     }
+
+    public Set<String> a(){return mItemSet;}
 
     /**************************************************************
      * Helper methods

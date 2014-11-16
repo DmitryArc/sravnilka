@@ -54,7 +54,27 @@ public class ClosebleEditField extends RelativeLayout {
 //        vBtnClose.setVisibility(visibility);
 //    }
 
+    public boolean hasData(){
+        return vBtnClose.getVisibility() == View.VISIBLE;
+    }
+
+    public String getData(){
+        if(vEditText == null){
+            return "";
+        }
+        return vEditText.getText().toString();
+    }
+
+    public void setData(String text){
+        if(vEditText != null && vBtnClose != null){
+            vEditText.setText(text);
+            vBtnClose.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void init(Context context){
+        this.setId(hashCode());
+
         LayoutInflater inflater = (LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         this.addView(inflater.inflate(R.layout.v_input_field, null));
