@@ -18,9 +18,11 @@ public class ParamsFactoryFragment extends SourceFactoryFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        getActivity().getActionBar().setTitle("Params");
+    public void onResume() {
+        super.onResume();
+        if(getActivity() != null){
+            getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_params));
+        }
     }
 
     @Override

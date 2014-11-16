@@ -18,9 +18,11 @@ public class ItemsFactoryFragment extends SourceFactoryFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        getActivity().getActionBar().setTitle("Items");
+    public void onResume() {
+        super.onResume();
+        if(getActivity() != null){
+            getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_items));
+        }
     }
 
     @Override

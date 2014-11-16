@@ -75,6 +75,13 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         mNextButton.setOnClickListener(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getActivity() != null){
+            getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_compare));
+        }
+    }
 
     private void initList(){
         mNames = new ArrayList<ComparatorItem>();

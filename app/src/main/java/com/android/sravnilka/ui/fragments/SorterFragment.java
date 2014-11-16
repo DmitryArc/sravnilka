@@ -57,6 +57,14 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if(getActivity() != null){
+            getActivity().getActionBar().setTitle(getResources().getString(R.string.title_f_sort));
+        }
+    }
+
+    @Override
     public void onClick(View v) {
 
     }
