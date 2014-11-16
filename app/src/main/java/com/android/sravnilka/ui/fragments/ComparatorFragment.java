@@ -47,8 +47,8 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
         if(args != null){
-            mItemsSet = (Set<String>)args.getSerializable(DATA);
-            mParamsSet = (Set<String>) args.getSerializable(CHECKS);
+            mItemsSet = (Set<String>)args.getSerializable(CHECKS);
+            mParamsSet = (Set<String>) args.getSerializable(DATA);
         }
     }
 
