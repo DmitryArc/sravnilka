@@ -23,6 +23,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.nineoldandroids:library:2.4.+'
+    compile "com.android.support:appcompat-v7:21.0.+"
     compile files('libs/listviewanimations_lib_core_3.1.0.jar')
     compile files('libs/listviewanimations_lib_manipulation_3.1.0.jar')
 }

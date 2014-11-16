@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_grey"
     android:orientation="vertical">
 
     <ListView
         android:id="@+id/comparator_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/light_grey"
         android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        ></ListView>
+        android:dividerHeight="0dp"></ListView>
 
 </LinearLayout>
