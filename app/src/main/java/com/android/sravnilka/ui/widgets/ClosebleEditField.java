@@ -74,6 +74,8 @@ public class ClosebleEditField extends RelativeLayout {
                 if(mRootListener != null && s.length() > 0){
                     mRootListener.onStartTyping(ClosebleEditField.this);
                     vBtnClose.setVisibility(View.VISIBLE);
+                    vEditText.setPadding(getPaddingLeft(), 0,
+                            (int)getResources().getDimension(R.dimen.input_field_right_padding), 0);
                 }
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after){
