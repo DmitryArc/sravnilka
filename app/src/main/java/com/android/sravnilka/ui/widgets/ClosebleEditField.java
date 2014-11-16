@@ -49,11 +49,6 @@ public class ClosebleEditField extends RelativeLayout {
         init(context);
     }
 
-//    private void setCloseButtonEnabled(boolean state){
-//        int visibility = state ? View.VISIBLE : View.GONE;
-//        vBtnClose.setVisibility(visibility);
-//    }
-
     public boolean hasData(){
         return vBtnClose.getVisibility() == View.VISIBLE;
     }
@@ -63,13 +58,6 @@ public class ClosebleEditField extends RelativeLayout {
             return "";
         }
         return vEditText.getText().toString();
-    }
-
-    public void setData(String text){
-        if(vEditText != null && vBtnClose != null){
-            vEditText.setText(text);
-            vBtnClose.setVisibility(View.VISIBLE);
-        }
     }
 
     private void init(Context context){

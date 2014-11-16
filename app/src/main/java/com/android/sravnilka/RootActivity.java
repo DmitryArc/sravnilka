@@ -113,8 +113,6 @@ public class RootActivity extends Activity implements IFlowController {
         openNewFragment(new ResultsFragment());
     }
 
-    public Set<String> a(){return mItemSet;}
-
     /**************************************************************
      * Helper methods
      **************************************************************/
