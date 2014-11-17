@@ -5,11 +5,13 @@
 
     <dimen name="input_field_height">60dp</dimen>
     <dimen name="input_field_right_padding">16dp</dimen>
-    <dimen name="input_field_small_padding">8dp</dimen>
+    <dimen name="input_field_small_padding">12dp</dimen>
 
-    <dimen name="btn_vertical_margin">16dp</dimen>
-    <dimen name="btn_horizontal_margin">8dp</dimen>
+    <dimen name="btn_vertical_margin">20dp</dimen>
+    <dimen name="btn_horizontal_margin">12dp</dimen>
 
     <dimen name="cb_margin">10dp</dimen>
     <dimen name="result_textsize">26sp</dimen>
+
+    <dimen name="homeAsUpIndicator_padding">16dp</dimen>homeAsUpIndicator
 </resources>

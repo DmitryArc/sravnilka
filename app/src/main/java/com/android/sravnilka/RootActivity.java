@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.sravnilka.ui.fragments.ComparatorFragment;
@@ -36,6 +37,10 @@ public class RootActivity extends Activity implements IFlowController {
         mParamSet = new TreeSet<String>();
         mMapping = new LinkedHashMap<String, Set<String>>();
         mImportanceScale = new LinkedHashMap<String, Integer>();
+
+        ImageView view = (ImageView)findViewById(android.R.id.home);
+//        view.setPadding((int)getResources().getDimension(R.dimen.homeAsUpIndicator_padding), 0,
+//                (int)getResources().getDimension(R.dimen.homeAsUpIndicator_padding), 0);
 
         if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
@@ -111,7 +116,9 @@ public class RootActivity extends Activity implements IFlowController {
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
-        fm.beginTransaction().replace(R.id.container, new ItemsFactoryFragment()).commit();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.animator.slide_in_from_right, R.animator.slide_out_to_left);
+        ft.replace(R.id.container, new ItemsFactoryFragment()).commit();
     }
 
     /**************************************************************
@@ -119,6 +126,8 @@ public class RootActivity extends Activity implements IFlowController {
      **************************************************************/
     private void openNewFragment(Fragment fragment){
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.animator.slide_in_from_right, R.animator.slide_out_to_left,
+                R.animator.slide_in_from_left, R.animator.slide_out_to_right);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
