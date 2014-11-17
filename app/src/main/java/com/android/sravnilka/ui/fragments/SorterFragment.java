@@ -73,13 +73,12 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
         mListView.enableDragAndDrop();
         mListView.setDraggableManager(new TouchViewDraggableManager(R.id.draganddrop_touchview));
         mListView.setOnItemMovedListener(new DragDropItemMovedListener(mAdapter, getActivity()));
-//        mListView.setOnItemLongClickListener(new DragDropLongClickListener(mListView));
-        mListView.setAdapter(mAdapter);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
         mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
         mNextButton.setText(R.string.result);
         mListView.addFooterView(footerLayout);
         mNextButton.setOnClickListener(this);
+        mListView.setAdapter(mAdapter);
     }
 
     private void initList(){

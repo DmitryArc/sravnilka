@@ -57,10 +57,14 @@ public class ResultsAdapter extends BaseAdapter {
 
         Map.Entry<String, Integer> item = getItem(position);
 
+        float alpha = (float)item.getValue() / (float)100;
+        if(alpha < 0.35f){
+            alpha = 0.35f;
+        }
         viewHolder.name.setText(item.getKey());
-        viewHolder.name.setAlpha((float)item.getValue() / (float)100);
-        viewHolder.value.setText(item.getValue()+"");
-        viewHolder.container.setAlpha((float)item.getValue() / (float)100);
+        viewHolder.name.setAlpha(alpha);
+        viewHolder.value.setText(item.getValue()+"%");
+        viewHolder.container.setAlpha(alpha);
 
         return convertView;
     }

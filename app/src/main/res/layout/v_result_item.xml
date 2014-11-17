@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@android:color/white"
-                android:textSize="30sp" />
+                android:textSize="@dimen/result_textsize" />
         </LinearLayout>
 
         <TextView

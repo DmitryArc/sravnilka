@@ -2,11 +2,13 @@ package com.android.sravnilka.ui.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.android.sravnilka.IFlowController;
@@ -67,12 +69,12 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         mListComparatorView = (ListView) view.findViewById(R.id.comparator_list);
         initList();
         mAdapter = new ComparatorAdapter(getActivity(), mDataFinish);
-        mListComparatorView.setAdapter(mAdapter);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
         mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
         mNextButton.setText(R.string.next);
         mListComparatorView.addFooterView(footerLayout);
         mNextButton.setOnClickListener(this);
+        mListComparatorView.setAdapter(mAdapter);
     }
 
     @Override
@@ -133,4 +135,5 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
         }
         return data;
     }
+
 }

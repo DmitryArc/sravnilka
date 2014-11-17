@@ -10,7 +10,8 @@
         android:button="@drawable/custom_checkbox"
         android:textColor="@color/jl_grey3"
         android:textSize="18sp"
-        android:paddingLeft="10dp"
+        android:paddingLeft="@dimen/cb_margin"
+        android:paddingStart="@dimen/cb_margin"
         android:checked="false"
         />
 </LinearLayout>

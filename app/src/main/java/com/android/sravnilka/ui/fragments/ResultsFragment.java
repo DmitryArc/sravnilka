@@ -62,12 +62,12 @@ public class ResultsFragment extends Fragment implements View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.lv_results);
         mAdapter = new ResultsAdapter(getActivity(), mResults);
-        mListView.setAdapter(mAdapter);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
         mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
         mNextButton.setText(R.string.reload);
         mListView.addFooterView(footerLayout);
         mNextButton.setOnClickListener(this);
+        mListView.setAdapter(mAdapter);
     }
 
     @Override

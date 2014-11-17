@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="cb_margin">35dp</dimen>
+    <dimen name="result_textsize">22sp</dimen>
+</resources>

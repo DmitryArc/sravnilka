@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:orientation="vertical"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="@color/bg_grey">-->
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_grey">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/lt_input_storage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/white">
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
         </LinearLayout>
 
@@ -27,9 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/light_blue"
+            android:text="@string/next"
             android:textColor="@android:color/white"
-            android:text="@string/next"/>
+            android:gravity="center"
+            android:layout_marginTop="@dimen/btn_vertical_margin"
+            android:layout_marginBottom="@dimen/btn_vertical_margin"
+            android:layout_marginLeft="@dimen/btn_horizontal_margin"
+            android:layout_marginStart="@dimen/btn_horizontal_margin"
+            android:layout_marginRight="@dimen/btn_horizontal_margin"
+            android:layout_marginEnd="@dimen/btn_horizontal_margin"/>
     </LinearLayout>
-    </ScrollView>
-
-<!--</LinearLayout>-->
+</ScrollView>
