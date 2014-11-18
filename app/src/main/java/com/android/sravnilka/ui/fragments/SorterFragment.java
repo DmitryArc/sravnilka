@@ -7,26 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
-import com.android.sravnilka.dao.CheckItem;
-import com.android.sravnilka.dao.ComparatorItem;
 import com.android.sravnilka.ui.adapter.DragDropAdapter;
 import com.android.sravnilka.ui.listeners.DragDropItemMovedListener;
-import com.android.sravnilka.ui.listeners.DragDropLongClickListener;
 import com.nhaarman.listviewanimations.ArrayAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by dka on 12.11.2014.

@@ -13,14 +13,19 @@ import java.util.Set;
  * Created by dka on 16.11.2014.
  */
 public class CalculationUtils {
+    private final static float WEIGHT = 10f;
+
     public static Map<String, Integer> calculateResult(Set<String> items,
                                                                Map<String, Set<String>> mapping,
                                                                Map<String, Integer> importanceScale){
         int maxIndex = -1;
-        Map<String, Integer> result = new HashMap<String, Integer>();
+        Map<String, Float> result = new HashMap<String, Float>();
+        Map<String, Integer> intresult = new HashMap<String, Integer>();
         for (String item : items){
-            result.put(item, 0);
+            result.put(item, 0f);
         }
+
+        final float step = WEIGHT / (float)(importanceScale.size() + 1);
 
         for(Map.Entry<String, Integer> scale : importanceScale.entrySet()){
             String key = scale.getKey();
@@ -32,15 +37,17 @@ public class CalculationUtils {
 
             Set<String> grid = mapping.get(key);
             for(String item : grid){
-                result.put(item, result.get(item) + value);
+                float val = WEIGHT - ( step * (float)(importanceScale.size() - value));
+                result.put(item, result.get(item) + val);
             }
         }
 
-        int maxValue = maxIndex * (maxIndex + 1) / 2;
-        for(Map.Entry<String, Integer> res : result.entrySet()){
-            result.put(res.getKey(), Math.round(res.getValue() * 100 / maxValue));
+        float s = (float)importanceScale.size();
+        float maxValue = s * (WEIGHT + (WEIGHT - step * (s - 1))) / (float) 2; //maxIndex * (maxIndex + 1) / 2;
+        for(Map.Entry<String, Float> res : result.entrySet()){
+            intresult.put(res.getKey(), Math.round(res.getValue() * 100 / maxValue));
         }
-        return sortMapByValuesD(result);
+        return sortMapByValuesD(intresult);
     }
 
     private static LinkedHashMap sortMapByValuesD(Map<String, Integer> passedMap) {
@@ -64,7 +71,7 @@ public class CalculationUtils {
                 if (comp1.equals(comp2)){
                     passedMap.remove(key);
                     mapKeys.remove(key);
-                    sortedMap.put((String)key, (Integer)val);
+                    sortedMap.put(key, val);
                     break;
                 }
 

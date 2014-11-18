@@ -23,7 +23,7 @@ public class DragDropItemMovedListener implements OnItemMovedListener {
         if (mToast != null) {
             mToast.cancel();
         }
-        mToast = Toast.makeText(vContext, vContext.getString(R.string.moved, mAdapter.getItem(newPosition), newPosition), Toast.LENGTH_SHORT);
-        mToast.show();
+//        mToast = Toast.makeText(vContext, vContext.getString(R.string.moved, mAdapter.getItem(newPosition), newPosition), Toast.LENGTH_SHORT);
+//        mToast.show();
     }
 }
