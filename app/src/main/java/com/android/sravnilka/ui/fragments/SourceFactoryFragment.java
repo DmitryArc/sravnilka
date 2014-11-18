@@ -1,15 +1,20 @@
 package com.android.sravnilka.ui.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.android.sravnilka.R;
 import com.android.sravnilka.ui.widgets.ClosebleEditField;
@@ -55,6 +60,9 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
         if(!mFieldStack.isEmpty()){
             vFieldStorage.removeAllViews();
             for(ClosebleEditField field : mFieldStack){
+                if(field.getParent() != null){
+                    ((ViewGroup) field.getParent()).removeAllViews();
+                }
                 vFieldStorage.addView(field);
             }
         } else if(vFieldStorage.getChildCount() == 0){
@@ -65,8 +73,14 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+//        Animator disappearAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.disappear_animator);
+//        vFieldStorage.getLayoutTransition().setAnimator(LayoutTransition.DISAPPEARING, disappearAnimator);
+
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(getView(), InputMethodManager.SHOW_IMPLICIT);
+        imm.showSoftInput(getView(), 0);
+
+
     }
 
     /**************************************************************
@@ -85,6 +99,16 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
                     }
                 }
                 if (next(data)){
+//                    final Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            if(vFieldStorage != null) {
+//                                vFieldStorage.removeAllViews();
+//                                vFieldStorage = null;
+//                            }
+//                        }
+//                    }, getResources().getInteger(android.R.integer.config_mediumAnimTime));
                     vFieldStorage.removeAllViews();
                     vFieldStorage = null;
                 }

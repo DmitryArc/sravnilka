@@ -38,7 +38,7 @@ public class RootActivity extends Activity implements IFlowController {
         mMapping = new LinkedHashMap<String, Set<String>>();
         mImportanceScale = new LinkedHashMap<String, Integer>();
 
-        ImageView view = (ImageView)findViewById(android.R.id.home);
+//        ImageView view = (ImageView)findViewById(android.R.id.home);
 //        view.setPadding((int)getResources().getDimension(R.dimen.homeAsUpIndicator_padding), 0,
 //                (int)getResources().getDimension(R.dimen.homeAsUpIndicator_padding), 0);
 
@@ -117,7 +117,7 @@ public class RootActivity extends Activity implements IFlowController {
             fm.popBackStack();
         }
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.animator.slide_in_from_right, R.animator.slide_out_to_left);
+        ft.setCustomAnimations(R.animator.slide_in_from_right, R.animator.slide_out_to_right);
         ft.replace(R.id.container, new ItemsFactoryFragment()).commit();
     }
 

@@ -38,7 +38,7 @@ public class ParamsFactoryFragment extends SourceFactoryFragment {
                             cef.requestFocus();
 
                             final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.showSoftInput(cef, 0);
+                            imm.showSoftInput(cef, InputMethodManager.SHOW_IMPLICIT);
                         } else {
                             final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
@@ -52,8 +52,13 @@ public class ParamsFactoryFragment extends SourceFactoryFragment {
 
     @Override
     protected boolean next(Set<String> items) {
-        if(getActivity() instanceof IFlowController){
-            return ((IFlowController)getActivity()).onParamSetReady(items);
+        if(getActivity() instanceof IFlowController) {
+            if (((IFlowController) getActivity()).onParamSetReady(items)) {
+                final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+
+                return true;
+            }
         }
         return false;
     }
