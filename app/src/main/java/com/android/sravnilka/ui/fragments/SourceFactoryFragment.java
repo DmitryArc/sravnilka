@@ -1,10 +1,13 @@
 package com.android.sravnilka.ui.fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -34,6 +37,7 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     /**************************************************************
      * Fragment callbacks
      **************************************************************/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,6 +60,13 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
         } else if(vFieldStorage.getChildCount() == 0){
             addInputField();
         }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(getView(), InputMethodManager.SHOW_IMPLICIT);
     }
 
     /**************************************************************
