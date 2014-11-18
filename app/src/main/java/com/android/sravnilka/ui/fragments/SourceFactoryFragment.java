@@ -109,6 +109,12 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
 //                            }
 //                        }
 //                    }, getResources().getInteger(android.R.integer.config_mediumAnimTime));
+
+                    final LayoutTransition transitioner = new LayoutTransition();
+                    vFieldStorage.setLayoutTransition(transitioner);
+                    Animator disappearAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.disappear_animator);
+                    transitioner.setAnimator(LayoutTransition.DISAPPEARING, disappearAnimator);
+
                     vFieldStorage.removeAllViews();
                     vFieldStorage = null;
                 }
