@@ -1,21 +1,41 @@
 package com.android.sravnilka.ui.fragments;
 
 import android.app.Activity;
+import android.os.Bundle;
 
 import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
+import com.android.sravnilka.ui.widgets.ClosebleEditField;
 
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Created by dka on 12.11.2014.
  */
 public class ItemsFactoryFragment extends SourceFactoryFragment {
 
+    public static ItemsFactoryFragment newInstance(boolean reloadPreviousState){
+        ItemsFactoryFragment fragment = new ItemsFactoryFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(EXTRA_RELOAD, reloadPreviousState);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public ItemsFactoryFragment(){
         super();
         mHintId = R.string.hint_input_item;
     }
+
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        if(savedInstanceState == null || !savedInstanceState.getBoolean(EXTRA_RELOAD) ||
+//                mFieldStack == null) {
+//            mFieldStack = new Stack<ClosebleEditField>();
+//        }
+//    }
 
     @Override
     public void onResume() {

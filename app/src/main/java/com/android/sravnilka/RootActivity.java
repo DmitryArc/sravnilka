@@ -31,6 +31,7 @@ public class RootActivity extends Activity implements IFlowController {
     private Set<String> mParamSet;
     private Map<String, Set<String>> mMapping;
     private Map<String, Integer> mImportanceScale;
+    private boolean mReloadParamsStateFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,7 @@ public class RootActivity extends Activity implements IFlowController {
         mParamSet = new TreeSet<String>();
         mMapping = new LinkedHashMap<String, Set<String>>();
         mImportanceScale = new LinkedHashMap<String, Integer>();
-
-//        ImageView view = (ImageView)findViewById(android.R.id.home);
-//        view.setPadding((int)getResources().getDimension(R.dimen.homeAsUpIndicator_padding), 0,
-//                (int)getResources().getDimension(R.dimen.homeAsUpIndicator_padding), 0);
+        mReloadParamsStateFlag = false;
 
         if(savedInstanceState == null){
             getFragmentManager().beginTransaction()
@@ -83,7 +81,9 @@ public class RootActivity extends Activity implements IFlowController {
             return false;
         } else {
             mItemSet = items;
-            openNewFragment(new ParamsFactoryFragment());
+            openNewFragment(ParamsFactoryFragment.newInstance(mReloadParamsStateFlag));
+            mReloadParamsStateFlag = true;
+//            openNewFragment(new ParamsFactoryFragment());
             return true;
         }
     }
@@ -115,6 +115,7 @@ public class RootActivity extends Activity implements IFlowController {
     @Override
     public void onReload() {
         clearData();
+        mReloadParamsStateFlag = false;
 
         FragmentManager fm = getFragmentManager();
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {

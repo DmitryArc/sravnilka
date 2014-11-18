@@ -94,8 +94,6 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
 
             getActivity().getWindow().setSoftInputMode(
                     WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-//            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
     }
 
