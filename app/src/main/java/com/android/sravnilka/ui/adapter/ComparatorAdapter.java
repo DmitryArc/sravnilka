@@ -1,7 +1,6 @@
 package com.android.sravnilka.ui.adapter;
 
 import android.content.Context;
-import android.support.v7.internal.widget.TintCheckBox;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
