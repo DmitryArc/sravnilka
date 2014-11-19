@@ -25,7 +25,10 @@ public class DragDropAdapter extends ArrayAdapter<String> {
     }
     @Override
     public long getItemId(final int position) {
-        return getItem(position).hashCode();
+        if (position < getCount())
+            return getItem(position).hashCode();
+        else
+            return position;
     }
     @Override
     public boolean hasStableIds() {
