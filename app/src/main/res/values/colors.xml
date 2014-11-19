@@ -10,4 +10,6 @@
     <color name="jl_grey4">#BABAB9</color>
     <color name="jl_grey5">#8E8C86</color>
     <color name="jl_grey7">#E2E1DE</color>
+
+    <color name="shadow_color">#80000000</color>
 </resources>

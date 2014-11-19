@@ -8,40 +8,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:layout_margin="10dp"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
+        style="@style/Shadow">
 
         <LinearLayout
-            android:id="@+id/percent_container"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:alpha="1"
-            android:background="@android:color/holo_green_light"
-            android:orientation="vertical">
+            android:background="@android:color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/percent_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:alpha="1"
+                android:background="@android:color/holo_green_light"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_percent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/result_textsize" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_percent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/result_textsize" />
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="0.8"
+                android:textColor="@color/jl_grey1"
+                android:textSize="22sp" />
+
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="0.8"
-            android:textColor="@color/jl_grey1"
-            android:textSize="22sp" />
-
-
     </LinearLayout>
 
 </LinearLayout>
