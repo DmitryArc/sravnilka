@@ -15,27 +15,11 @@ import java.util.Stack;
  */
 public class ItemsFactoryFragment extends SourceFactoryFragment {
 
-    public static ItemsFactoryFragment newInstance(boolean reloadPreviousState){
-        ItemsFactoryFragment fragment = new ItemsFactoryFragment();
-        Bundle args = new Bundle();
-        args.putBoolean(EXTRA_RELOAD, reloadPreviousState);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public ItemsFactoryFragment(){
         super();
         mHintId = R.string.hint_input_item;
     }
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if(savedInstanceState == null || !savedInstanceState.getBoolean(EXTRA_RELOAD) ||
-//                mFieldStack == null) {
-//            mFieldStack = new Stack<ClosebleEditField>();
-//        }
-//    }
 
     @Override
     public void onResume() {

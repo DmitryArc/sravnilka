@@ -17,7 +17,6 @@ import com.android.sravnilka.R;
 import com.android.sravnilka.ui.widgets.ClosebleEditField;
 import com.android.sravnilka.ui.widgets.IInputStorage;
 
-import java.io.Serializable;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
@@ -26,7 +25,6 @@ import java.util.TreeSet;
  * Created by dka on 12.11.2014.
  */
 public abstract class SourceFactoryFragment extends Fragment implements IInputStorage {
-    protected final static String EXTRA_RELOAD = "reload";
     protected int mHintId;
     protected Button vNextButton;
     protected LinearLayout vFieldStorage;
@@ -35,11 +33,7 @@ public abstract class SourceFactoryFragment extends Fragment implements IInputSt
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        if(args == null || !args.getBoolean(EXTRA_RELOAD) ||
-                mFieldStack == null) {
-            mFieldStack = new Stack<ClosebleEditField>();
-        }
+        mFieldStack = new Stack<ClosebleEditField>();
     }
 
     /**************************************************************
