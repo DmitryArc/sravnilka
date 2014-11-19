@@ -1,5 +1,7 @@
 package com.android.sravnilka.ui.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import com.android.sravnilka.dao.CheckItem;
 import com.android.sravnilka.dao.ComparatorItem;
 import com.android.sravnilka.ui.adapter.ComparatorAdapter;
 import com.android.sravnilka.ui.adapter.ResultsAdapter;
+import com.android.sravnilka.utils.FragmentUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -100,6 +103,15 @@ public class ResultsFragment extends Fragment implements View.OnClickListener{
         if(getActivity() instanceof IFlowController){
             ((IFlowController)getActivity()).onReload();
         }
+    }
+
+    @Override
+    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
+        if (FragmentUtils.sDisableFragmentAnimations) {
+            final Animator anim = AnimatorInflater.loadAnimator(getActivity(), R.animator.slide_out_to_left);
+            return anim;
+        }
+        return super.onCreateAnimator(transit, enter, nextAnim);
     }
 
 }

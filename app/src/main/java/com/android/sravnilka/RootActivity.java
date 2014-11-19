@@ -19,6 +19,7 @@ import com.android.sravnilka.ui.fragments.ParamsFactoryFragment;
 import com.android.sravnilka.ui.fragments.ResultsFragment;
 import com.android.sravnilka.ui.fragments.SorterFragment;
 import com.android.sravnilka.utils.CalculationUtils;
+import com.android.sravnilka.utils.FragmentUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -83,7 +84,6 @@ public class RootActivity extends Activity implements IFlowController {
             mItemSet = items;
             openNewFragment(ParamsFactoryFragment.newInstance(mReloadParamsStateFlag));
             mReloadParamsStateFlag = true;
-//            openNewFragment(new ParamsFactoryFragment());
             return true;
         }
     }
@@ -117,13 +117,17 @@ public class RootActivity extends Activity implements IFlowController {
         clearData();
         mReloadParamsStateFlag = false;
 
+        FragmentUtils.sDisableFragmentAnimations = true;
         FragmentManager fm = getFragmentManager();
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.animator.slide_in_from_right, R.animator.slide_out_to_right);
+
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.setCustomAnimations(R.animator.slide_in_from_right, R.animator.slide_out_to_left);
         ft.replace(R.id.container, new ItemsFactoryFragment()).commit();
+        fm.executePendingTransactions();
+        FragmentUtils.sDisableFragmentAnimations = false;
     }
 
     /**************************************************************
