@@ -3,7 +3,6 @@ package com.android.sravnilka.ui.listeners;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.android.sravnilka.R;
 import com.nhaarman.listviewanimations.ArrayAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.OnItemMovedListener;
 

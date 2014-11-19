@@ -1,16 +1,12 @@
 package com.android.sravnilka;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.sravnilka.ui.fragments.ComparatorFragment;
@@ -75,8 +71,8 @@ public class RootActivity extends Activity implements IFlowController {
      **************************************************************/
     @Override
     public boolean onItemSetReady(Set<String> items) {
-        if(items.isEmpty()){
-            Toast.makeText(this, R.string.check_notification, Toast.LENGTH_SHORT).show();
+        if(items.size() < 2){
+            showToast();
             return false;
         } else {
             mItemSet = items;
@@ -87,8 +83,8 @@ public class RootActivity extends Activity implements IFlowController {
 
     @Override
     public boolean onParamSetReady(Set<String> params) {
-        if(params.isEmpty()){
-            Toast.makeText(this, R.string.check_notification, Toast.LENGTH_SHORT).show();
+        if(params.size() < 2){
+            showToast();
             return false;
         } else {
             mParamSet = params;
@@ -143,6 +139,12 @@ public class RootActivity extends Activity implements IFlowController {
         mParamSet.clear();
         mMapping.clear();
         mImportanceScale.clear();
+    }
+
+    private void showToast(){
+        Toast toast = Toast.makeText(this, R.string.check_notification, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, (int)getResources().getDimension(R.dimen.toast_padding));
+        toast.show();
     }
 
 }

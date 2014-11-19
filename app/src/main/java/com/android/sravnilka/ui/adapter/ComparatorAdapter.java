@@ -19,8 +19,8 @@ import java.util.ArrayList;
  * Created by Дмитрий on 13.11.2014.
  */
 public class ComparatorAdapter extends BaseAdapter{
-    private ArrayList<ComparatorItem> mNameData;
-    private LayoutInflater inflater;
+    private final ArrayList<ComparatorItem> mNameData;
+    private final LayoutInflater inflater;
 
 
     public ComparatorAdapter(Context context,ArrayList<ComparatorItem> nameData){

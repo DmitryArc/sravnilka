@@ -1,7 +1,6 @@
 package com.android.sravnilka.ui.fragments;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.inputmethod.InputMethodManager;
 
@@ -9,9 +8,7 @@ import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
 import com.android.sravnilka.ui.widgets.ClosebleEditField;
 
-import java.io.Serializable;
 import java.util.Set;
-import java.util.Stack;
 
 /**
  * Created by dka on 12.11.2014.

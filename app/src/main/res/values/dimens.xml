@@ -11,6 +11,8 @@
     <dimen name="btn_horizontal_margin">12dp</dimen>
 
     <dimen name="cb_margin">10dp</dimen>
-    <dimen name="result_textsize">26sp</dimen>
+    <dimen name="result_textsize">24sp</dimen>
+
+    <dimen name="toast_padding">128dp</dimen>
 
 </resources>

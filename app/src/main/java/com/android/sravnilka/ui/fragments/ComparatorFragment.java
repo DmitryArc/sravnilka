@@ -32,9 +32,7 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
 
     private final static String DATA = "data";
     private final static String CHECKS = "checks";
-    private ListView mListComparatorView;
     private ComparatorAdapter mAdapter;
-    private Button mNextButton;
     private Set<String> mItemsSet;
     private Set<String> mParamsSet;
     private ArrayList<ComparatorItem> mDataFinish;
@@ -67,22 +65,21 @@ public class ComparatorFragment extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fr_comparator, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fr_comparator, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListComparatorView = (ListView) view.findViewById(R.id.comparator_list);
+        ListView listComparatorView = (ListView) view.findViewById(R.id.comparator_list);
         initList();
         mAdapter = new ComparatorAdapter(getActivity(), mDataFinish);
         FrameLayout footerLayout = (FrameLayout) getActivity().getLayoutInflater().inflate(R.layout.v_btn_next,null);
-        mNextButton = (Button) footerLayout.findViewById(R.id.btn_next);
-        mNextButton.setText(R.string.next);
-        mListComparatorView.addFooterView(footerLayout);
-        mNextButton.setOnClickListener(this);
-        mListComparatorView.setAdapter(mAdapter);
+        Button nextButton = (Button) footerLayout.findViewById(R.id.btn_next);
+        nextButton.setText(R.string.next);
+        listComparatorView.addFooterView(footerLayout);
+        nextButton.setOnClickListener(this);
+        listComparatorView.setAdapter(mAdapter);
     }
 
     @Override

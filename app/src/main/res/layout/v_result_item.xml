@@ -22,7 +22,7 @@
                 android:id="@+id/percent_container"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2"
+                android:layout_weight="0.22"
                 android:gravity="center"
                 android:alpha="1"
                 android:background="@android:color/holo_green_light"
@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="15dp"
-                android:layout_weight="0.8"
+                android:layout_weight="0.78"
                 android:textColor="@color/jl_grey1"
                 android:textSize="22sp" />
 

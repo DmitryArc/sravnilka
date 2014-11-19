@@ -10,7 +10,6 @@ import com.android.sravnilka.R;
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * Created by Dzmitry_Balash on 11/12/2014.

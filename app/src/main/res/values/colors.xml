@@ -3,7 +3,6 @@
     <color name="light_blue">#1194f6</color>
     <color name="actionbar_color">#27b4e8</color>
     <color name="bg_grey">#ececec</color>
-    <color name="light_grey">#F3F1ED</color>
     <color name="jl_grey1">#393939</color>
     <color name="jl_grey2">#727270</color>
     <color name="jl_grey3">#8F8D87</color>
@@ -11,5 +10,4 @@
     <color name="jl_grey5">#8E8C86</color>
     <color name="jl_grey7">#E2E1DE</color>
 
-    <color name="shadow_color">#80000000</color>
 </resources>

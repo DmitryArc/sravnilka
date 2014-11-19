@@ -1,14 +1,9 @@
 package com.android.sravnilka.ui.fragments;
 
-import android.app.Activity;
-import android.os.Bundle;
-
 import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
-import com.android.sravnilka.ui.widgets.ClosebleEditField;
 
 import java.util.Set;
-import java.util.Stack;
 
 /**
  * Created by dka on 12.11.2014.

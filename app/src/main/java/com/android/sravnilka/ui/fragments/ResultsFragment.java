@@ -13,18 +13,11 @@ import android.widget.ListView;
 
 import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
-import com.android.sravnilka.dao.CheckItem;
-import com.android.sravnilka.dao.ComparatorItem;
-import com.android.sravnilka.ui.adapter.ComparatorAdapter;
 import com.android.sravnilka.ui.adapter.ResultsAdapter;
 import com.android.sravnilka.utils.FragmentUtils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by dka on 12.11.2014.
@@ -108,8 +101,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener{
     @Override
     public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
         if (FragmentUtils.sDisableFragmentAnimations) {
-            final Animator anim = AnimatorInflater.loadAnimator(getActivity(), R.animator.slide_out_to_left);
-            return anim;
+            return AnimatorInflater.loadAnimator(getActivity(), R.animator.slide_out_to_left);
         }
         return super.onCreateAnimator(transit, enter, nextAnim);
     }
