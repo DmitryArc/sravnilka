@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.sravnilka.R;
+import com.android.sravnilka.ui.widgets.DndView;
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.ArrayList;
@@ -16,12 +17,14 @@ import java.util.ArrayList;
  */
 public class DragDropAdapter extends ArrayAdapter<String> {
     private final Context mContext;
+
     public DragDropAdapter(final Context context, ArrayList<String> data) {
         mContext = context;
         for (String item : data) {
             add(item);
         }
     }
+
     @Override
     public long getItemId(final int position) {
         if (position < getCount())
@@ -29,15 +32,18 @@ public class DragDropAdapter extends ArrayAdapter<String> {
         else
             return position;
     }
+
     @Override
     public boolean hasStableIds() {
         return true;
     }
+
     @Override
     public View getView(final int position, final View convertView, final ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.v_drag_drop_item, parent, false);
+//            view = LayoutInflater.from(mContext).inflate(R.layout.v_drag_drop_item, parent, false);
+            view = new DndView(mContext, parent);
         }
         ((TextView) view.findViewById(R.id.draganddrop_textview)).setText(getItem(position));
         return view;
