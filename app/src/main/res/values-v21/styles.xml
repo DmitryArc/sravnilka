@@ -20,6 +20,10 @@
     </style>
 
     <style name="Shadow">
-        <item name="android:elevation">1dip</item>
+        <item name="android:paddingTop">1dip</item>
+        <item name="android:paddingRight">1dip</item>
+        <item name="android:paddingBottom">2dip</item>
+        <item name="android:paddingLeft">2dip</item>
+        <item name="android:background">@drawable/shadow_background</item>
     </style>
 </resources>
