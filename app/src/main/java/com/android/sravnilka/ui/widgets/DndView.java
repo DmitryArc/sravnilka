@@ -44,9 +44,14 @@ public class DndView extends LinearLayout {
         this.addView(view);
     }
 
+    /**
+     * Workaround for request to show dotted line on new view place
+     * @param visibility
+     */
     @Override
     public void setVisibility(int visibility) {
         if(visibility != View.INVISIBLE) {
+            findViewById(R.id.draganddrop_textview).setBackgroundColor(getResources().getColor(android.R.color.white));
             super.setVisibility(visibility);
         } else {
             findViewById(R.id.draganddrop_textview).setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));

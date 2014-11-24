@@ -10,10 +10,10 @@ import android.widget.FrameLayout;
 
 import com.android.sravnilka.IFlowController;
 import com.android.sravnilka.R;
+import com.android.sravnilka.dnd.DynamicListView;
 import com.android.sravnilka.ui.adapter.DragDropAdapter;
 import com.android.sravnilka.ui.listeners.DragDropItemMovedListener;
 import com.nhaarman.listviewanimations.ArrayAdapter;
-import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
 
 import java.io.Serializable;
@@ -29,7 +29,7 @@ public class SorterFragment extends Fragment implements View.OnClickListener{
 
     private final static String SORTER = "sorter";
 
-    private DynamicListView mListView;
+    private com.nhaarman.listviewanimations.itemmanipulation.DynamicListView mListView;
     private ArrayAdapter<String> mAdapter;
     private Button mNextButton;
     private Set<String> mData;
